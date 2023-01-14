@@ -2,6 +2,7 @@
 \documentclass{IOS-Book-Article}
 \usepackage{graphicx}
 
+\usepackage{float} % keeps tables in the exact position they occupy in the code
 \usepackage{mathptmx}
 \usepackage{soul}\setuldepth{article}
 %\usepackage{times}
@@ -43,17 +44,17 @@ Natural Language Processing\sep Health-content\sep
 Language Models\sep Knowledge Reproduction\sep Corpora\sep COVID-19
 \end{keyword}
 \end{frontmatter}
-\markboth{April 2022\hb}{April 2022\hb}
+\markboth{January 2023\hb}{January 2023\hb}
 %\thispagestyle{empty}
 %\pagestyle{empty}
 
 \section{Introduction}
 
-Knowledge representation in AI is currently an important research area. 
+%aggiungere articolo della Ettinger
 Recent developments in Natural Language Processing have
 demonstrated the ability of artificial neural language models in parsing and producing complex linguistic structures across languages. Neural language models can be queried with naturally occurring sentences compared with minimally differing ex-novo examples, allowing us to elegantly detect and quantify asymmetries between pairs of isolated conditions.
-In this contribution, we explore two languages and different training set to detect forms of bias in real-world representations with respect to medical semantic-encyclopedic knowledge adopting and improving the dataset discussed in [1], which tested and detected syntactic bias of transformer-based neural language models with respect to a list of mythbusters from the World Health Organization.
-In [1] conclusions, the authors aimed in future studies to detect whether the observed results was due to the type of investigated training data.
+In this contribution, we explore two languages and different training set to detect forms of bias in real-world representations with respect to medical semantic-encyclopedic knowledge adopting and improving the dataset discussed in [1], which tested and detected syntactic bias of transformer-based neural language models with respect to a list of mythbusters from the World Health Organization. %rimettere la footnote?
+In [1]'s conclusions, the authors aimed in future studies to detect whether the observed results was due to the type of investigated training data. Specifically, whether neural language models trained domain-specific datasets might perform better than those trained with domain-general data.
 
 
 \section{Materials \& Methods}
@@ -67,7 +68,7 @@ The queried dataset is in [1] and freely accessible from a Samo et al.'repositor
          English & \href{https://huggingface.co/docs/transformers/model_doc/bert}{\underline{BERT}} & Domain general (web, wiki)\\
          English & \href{https://huggingface.co/docs/transformers/model_doc/big_bird}{\underline{BigBird}} & Domain general (web, wiki)\\
          English & \href{https://huggingface.co/austinmw/distilbert-base-uncased-finetuned-health_facts}{\underline{HealthF}} & Domain specific (fact checking)\\
-         English & PHS & Domain specific\\
+         English & \href{https://huggingface.co/publichealthsurveillance/PHS-BERT}{\underline{PHS}} & Domain specific (health surveillance on social media)\\
          Chinese & Bert & Domain general (web, wiki)\\
          Chinese & HealthZH & Domain specific\\
          
@@ -82,7 +83,7 @@ The methodology is to be referred to [1].
 
 \section{Results}
 
-\begin{figure}
+\begin{figure}[H]
     \centering
     \includegraphics[scale=0.35]{graphmatplot}
     \caption{True-False across language models. The higher the results the less performing (more surprisal for true sentences) the architectures.}
