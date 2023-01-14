@@ -79,24 +79,31 @@ In this contribution, we explore two languages and different training set to det
 
 \begin{figure}
     \centering
+    \small
     \includegraphics[scale=0.35]{graphmatplot}
     \caption{True-False across language models. }
     \label{fig:my_label}
 \end{figure}
 
-\noindent \textbf{Results} Our results are contrastive across langauges. We observe that one general-domain architecture (BERT) perform worse (M = 18.269, SD = 5.82 ) than domain-specific (\textit{F} (3, 64) = 177.30362; p $<$ .00001) but at the same time BigBird (which has perform better) In chinese, the general domain performs ( \textit{M} = 0.510, \textit{SD} = 2.421) better than the domain-specific one ( \textit{M} = 1.81, \textit{SD} = 2.418) (\textit{t}(34) = 2.6837, p. $<$ .05).
+\noindent \textbf{Results} Our results are different across languages. We observe asymmetries: while one general-domain architecture perform worse BERT (M = 18.269, SD = 5.82 ) than domain-specific (\textit{F} (3, 64) = 177.30362; p $<$ .00001) but at the same time BigBird results in the best performance (M = -24.459, SD = 7.0771364), possibly due to sparse/global attention. In Chinese, the general domain performs ( \textit{M} = 0.510, \textit{SD} = 2.421) better than the domain-specific one ( \textit{M} = 1.81, \textit{SD} = 2.418) (\textit{t}(34) = 2.6837, p. $<$ .05).
 
-\section{Conclusions and future studies}
-In this paper, we have discussed that 
+\noindent \textbf{Conclusions and future studies}
+In this paper, we provided a methodology to test bias of in multilingual corpora [3]
 
 \begin{thebibliography}{99}
 
 
 \bibitem{r1}
-Linzen T., Baroni M., 
+Linzen T, Baroni M. Syntactic Structure from Deep Learning. Annual Review of Linguistics 7:1,
+Jan.2021;195-212.
 
 \bibitem{r2}
 Samo G, Bonan C, Si F. Health-Related Content in Transformer-Based Deep Neural Network Language Models: Exploring Cross-Linguistic Syntactic Bias. Stud Health Technol Inform. 2022 Jun 29;295:221-225. doi: 10.3233/SHTI220702. PMID: 35773848.
+
+\bibitem{r3}
+Utunen P, Ndiaye N, Attias M, Mattar L. Multilingual Approach to COVID-19 Online Learning
+Response on OpenWHO.org. In: Mantas J, Hasman A, Househ MS, Gallos P, Zoulias E, Liaskos J,
+editors. Informatics and Technology in Clinical Care and Public Health; IOS Press, 2022;Jan:192-5.
 
 \end{thebibliography}
 \end{document}
