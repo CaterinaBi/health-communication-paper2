@@ -52,59 +52,51 @@ Language Models\sep Knowledge Reproduction\sep Corpora\sep COVID-19
 
 %aggiungere articolo della Ettinger
 Recent developments in Natural Language Processing have
-demonstrated the ability of artificial neural language models in parsing and producing complex linguistic structures across languages. Neural language models can be queried with naturally occurring sentences compared with minimally differing ex-novo examples, allowing us to elegantly detect and quantify asymmetries between pairs of isolated conditions.
-In this contribution, we explore two languages and different training set to detect forms of bias in real-world representations with respect to medical semantic-encyclopedic knowledge adopting and improving the dataset discussed in [1], which tested and detected syntactic bias of transformer-based neural language models with respect to a list of mythbusters from the World Health Organization. %rimettere la footnote?
-In [1]'s conclusions, the authors aimed in future studies to detect whether the observed results was due to the type of investigated training data. Specifically, whether neural language models trained domain-specific datasets might perform better than those trained with domain-general data.
+demonstrated the ability of artificial neural language models in parsing and producing complex linguistic structures across languages (see [1] for an overview). Neural language models can be queried with naturally occurring sentences compared with minimally differing ex-novo examples, allowing us to elegantly detect and quantify asymmetries between pairs of isolated conditions.
+In this contribution, we explore two languages and different training set to detect forms of bias in real-world representations with respect to medical semantic-encyclopedic knowledge adopting and improving the dataset discussed in [2], which tested and detected syntactic bias of transformer-based neural language models with respect to a list of mythbusters on COVID-19 extracted from a corpus the World Health Organization. We present a study below.\footnote{\footnote{Additional information with respect to the data are all available at the following link:}}
 
+\section{The study}
+\textbf{Hypothesis} In [2]'s conclusions, the authors aimed in future studies to detect whether the observed results was due to the type of investigated training data. Specifically, whether neural language models trained domain-specific datasets might perform better than those trained with domain-general data.
 
-\section{Materials \& Methods}
-
-The queried dataset is in [1] and freely accessible from a Samo et al.'repository \footnote{add link github}. 
+\noindent \textbf{Materials} The queried dataset is provided by the authors in [2] for English and Chinese. The training sets of languages of our contribution is presented in table \ref{models}.
 
 \begin{table}[]
     \centering
-    \begin{tabular}{c|c|c}
-         \textsc{Language} & \textsc{Language Model} & \textsc{Training set type}\\
+    \begin{tabular}{l|l|l}
+         \textsc{Language} & \textsc{Language Model} & \textsc{Training set type}\\ \hline
          English & \href{https://huggingface.co/docs/transformers/model_doc/bert}{\underline{BERT}} & Domain general (web, wiki)\\
          English & \href{https://huggingface.co/docs/transformers/model_doc/big_bird}{\underline{BigBird}} & Domain general (web, wiki)\\
          English & \href{https://huggingface.co/austinmw/distilbert-base-uncased-finetuned-health_facts}{\underline{HealthF}} & Domain specific (fact checking)\\
          English & \href{https://huggingface.co/publichealthsurveillance/PHS-BERT}{\underline{PHS}} & Domain specific (health surveillance on social media)\\
          Chinese & \href{https://huggingface.co/bert-base-chinese}{\underline{Bert}} & Domain general (web, wiki)\\
-         Chinese & \href{https://huggingface.co/nghuyong/ernie-health-zh}{\underline{HealthZH}} & Domain specific (medical dialogues, records, textbooks)\\
-         
+         Chinese & \href{https://huggingface.co/nghuyong/ernie-health-zh}{\underline{HealthZH}} & Domain specific (medical dialogues, records, textbooks)\\ \hline
     \end{tabular}
     \caption{Language Models used in this paper.}
-    \label{tab:my_label}
+    \label{models}
 \end{table}
 
-As developped in [1], we implemeented devised ex-novo sentences. 
+\noindent \textbf{Methods} The methodology is the one followed in [2]. The machine is presented with two sentences (i) a \textsc{true} statement extracted from the corpus and (ii) a \textsc{false} statement created with logical operators (see [2] for details). Our measure is the represented by the difference between the suprisal (the logarithm) of the \textsc{true} and the \textsc{false} statement. The higher the results the less performing (more surprisal for true sentences) the architectures.
 
-The methodology is to be referred to [1].
-
-\section{Results}
-
-\begin{figure}[H]
+\begin{figure}
     \centering
     \includegraphics[scale=0.35]{graphmatplot}
-    \caption{True-False across language models. The higher the results the less performing (more surprisal for true sentences) the architectures.}
+    \caption{True-False across language models. }
     \label{fig:my_label}
 \end{figure}
 
-Our results are contrastive across langauges. We observe that the general-domain architecture (BERT) perform worse (M = 18.269, SD = 5.82 ) than domain-specific (\textit{F} (3, 64) = 177.30362; p $<$ .00001). On the other hand, the general domain performs ( \textit{M} = 0.510, \textit{SD} = 2.421) better than the domain-specific one ( \textit{M} = 1.81, \textit{SD} = 2.418) (\textit{t}(34) = 2.6837, p. < .05).
+\noindent \textbf{Results} Our results are contrastive across langauges. We observe that one general-domain architecture (BERT) perform worse (M = 18.269, SD = 5.82 ) than domain-specific (\textit{F} (3, 64) = 177.30362; p $<$ .00001) but at the same time BigBird (which has perform better) In chinese, the general domain performs ( \textit{M} = 0.510, \textit{SD} = 2.421) better than the domain-specific one ( \textit{M} = 1.81, \textit{SD} = 2.418) (\textit{t}(34) = 2.6837, p. $<$ .05).
 
-\section{Conclusions}
+\section{Conclusions and future studies}
 In this paper, we have discussed that 
 
 \begin{thebibliography}{99}
 
 
 \bibitem{r1}
-Samo G, Bonan C, Si F. Health-Related Content in Transformer-Based Deep Neural Network Language Models: Exploring Cross-Linguistic Syntactic Bias. Stud Health Technol Inform. 2022 Jun 29;295:221-225. doi: 10.3233/SHTI220702. PMID: 35773848.
+Linzen T., Baroni M., 
 
 \bibitem{r2}
-Rice AS, Farquhar-Smith WP, Bridges D, Brooks JW. Canabinoids and pain. In: Dostorovsky JO,
-Carr DB, Koltzenburg M, editors. Proceedings of the 10th World Congress on Pain;  2002 Aug
-17-22; San Diego, CA. Seattle (WA): IASP Press; c2003. p. 437-68, doi: ....
+Samo G, Bonan C, Si F. Health-Related Content in Transformer-Based Deep Neural Network Language Models: Exploring Cross-Linguistic Syntactic Bias. Stud Health Technol Inform. 2022 Jun 29;295:221-225. doi: 10.3233/SHTI220702. PMID: 35773848.
 
 \end{thebibliography}
 \end{document}
