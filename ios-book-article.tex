@@ -20,7 +20,7 @@
 
 
 %\pretitle{Pretitle}
-\title{Health-related content in transformer-based language models:\\ Bias in domain-specific training sets.}
+\title{Health-related content in Transformer-based language models:\\ Bias in domain-specific training sets.}
 
 \markboth{}{January 2023\hb}
 %\subtitle{Subtitle}
@@ -36,7 +36,7 @@ and
 \address[B]{University of Geneva}
 
 \begin{abstract}
-In this short communication, we implement and improve results from \cite{r1}, in which we claimed that the syntactic bias observed in general-purpose training sets urged the creation of domain-specific health-communication corpora, and predicted better performance for the latter. 
+In this short communication, we implement and improve results from \cite{r2}, in which we claimed that the syntactic bias observed in general-purpose training sets urged the creation of domain-specific health-communication corpora, and predicted better performance for the latter. Here, ...
 \end{abstract}
 
 \begin{keyword}
@@ -51,9 +51,9 @@ Language Models\sep Knowledge Reproduction\sep Corpora\sep COVID-19
 \section{Introduction}
 
 %aggiungere articolo della Ettinger
-Recent developments in Natural Language Processing have
-demonstrated the ability of artificial neural language models in parsing and producing complex linguistic structures across languages (see [1] for an overview). Neural language models can be queried with naturally occurring sentences compared with minimally differing ex-novo examples, allowing us to elegantly detect and quantify asymmetries between pairs of isolated conditions.
-In this contribution, we explore two languages and different training set to detect forms of bias in real-world representations with respect to medical semantic-encyclopedic knowledge adopting and improving the dataset discussed in [2], which tested and detected syntactic bias of transformer-based neural language models with respect to a list of mythbusters on COVID-19 extracted from a corpus the World Health Organization. We present a study below.\footnote{\footnote{Additional information with respect to the data are all available at the following link:}}
+Artificial neural language models (LMs) have been proven able to parse and generate complex linguistic structures across languages (\cite{r1} for an overview). 
+In \cite{r2}, we tested and detected syntactic bias of transformer-based LMs with respect to a list of myth busters on COVID-19 extracted from a corpus of the World Health Organization. In doing so, we demonstrated that when these LMs are queried with naturally occurring sentences compared with minimally differing \textit{ex-novo} examples, one can elegantly detect and quantify asymmetries between pairs of isolated conditions.
+ In this contribution, we explore six training sets for English and Chinese LMs to detect forms of bias in real-world representations with respect to domain-specific (i.e., medical) semantic-encyclopedic knowledge, thus adopting and improving the dataset previously discussed in \cite{r2}. \footnote{Information on the data is available at the following link:\href{https://github.com/samo-g/healthtransformer}{\underline{https://github.com/samo-g/healthtransformer}}.}
 
 \section{The study}
 \textbf{Hypothesis} In [2]'s conclusions, the authors aimed in future studies to detect whether the observed results was due to the type of investigated training data. Specifically, whether neural language models trained domain-specific datasets might perform better than those trained with domain-general data.
