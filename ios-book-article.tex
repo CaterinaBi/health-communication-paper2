@@ -20,12 +20,12 @@
 
 
 %\pretitle{Pretitle}
-\title{Health-related content in Transformer-based language models:\\ Bias in domain-specific training sets.}
+\title{Health-related content in Transformer-based language models.}
 
 \markboth{}{January 2023\hb}
-%\subtitle{Subtitle}
+\subtitle{Exploring bias in domain general vs. domain specific training sets.}
 
-
+\vspace{-4mm}
 \author[A]{\fnms{Caterina} \snm{Bonan}\orcid{0000-0002-4808-6865}%
 }
 and
@@ -36,7 +36,7 @@ and
 \address[B]{University of Geneva}
 
 \begin{abstract}
-In this short communication, we implement and improve results from \cite{r2}, in which we claimed that the syntactic bias observed in general-purpose training sets urged the creation of domain-specific health-communication corpora, and predicted better performance for the latter. Here, ...
+In this communication, we demonstrate that the bias observed in domain general training sets with health-related content is not improved in domain specific health-communication corpora, \textit{contra} \cite{r1}.
 \end{abstract}
 
 \begin{keyword}
@@ -48,62 +48,68 @@ Language Models\sep Knowledge Reproduction\sep Corpora\sep COVID-19
 %\thispagestyle{empty}
 %\pagestyle{empty}
 
+\vspace{-6mm}
 \section{Introduction}
 
 %aggiungere articolo della Ettinger
-Artificial neural language models (LMs) have been proven able to parse and generate complex linguistic structures across languages (\cite{r1} for an overview). 
-In \cite{r2}, we tested and detected syntactic bias of transformer-based LMs with respect to a list of myth busters on COVID-19 extracted from a corpus of the World Health Organization. In doing so, we demonstrated that when these LMs are queried with naturally occurring sentences compared with minimally differing \textit{ex-novo} examples, one can elegantly detect and quantify asymmetries between pairs of isolated conditions.
- In this contribution, we explore six training sets for English and Chinese LMs to detect forms of bias in real-world representations with respect to domain-specific (i.e., medical) semantic-encyclopedic knowledge, thus adopting and improving the dataset previously discussed in \cite{r2}. \footnote{Information on the data is available at the following link:\href{https://github.com/samo-g/healthtransformer}{\underline{https://github.com/samo-g/healthtransformer}}.}
+Artificial neural language models (LMs) parse and generate complex linguistic structures across languages \cite{r2}, and can be used for fact checking \cite{r3}. 
+In \cite{r1}, we detected syntactic bias in transformer-based LMs using a list of myth busters on COVID-19 from a World Health Organization corpus. We demonstrated that when LMs are queried with sentences compared with \textit{ad hoc} examples with opposite polarity, asymmetries are easily detected and quantified.
+Here, we explore six training sets for English and Chinese LMs to detect forms of bias with respect to domain-specific (i.e., medical) semantico-encyclopedic knowledge, adopting and improving the dataset previously discussed in \cite{r1}.\footnote{Information on the data is available at the following link:\href{https://github.com/samo-g/healthtransformer}{\underline{https://github.com/samo-g/healthtransformer}}.}
 
+\vspace{-4mm}
 \section{The study}
-\textbf{Hypothesis} In [2]'s conclusions, the authors aimed in future studies to detect whether the observed results was due to the type of investigated training data. Specifically, whether neural language models trained domain-specific datasets might perform better than those trained with domain-general data.
+\textbf{Hypothesis} In \cite{r1}'s conclusions, we claimed that the observed results could be due to the type of training data under investigation, and hypothesised that LMs trained on domain-specific datasets might perform better than those trained with domain-general data.
 
-\noindent \textbf{Materials} The queried dataset is provided by the authors in [2] for English and Chinese. The training sets of languages of our contribution is presented in table \ref{models}.
+\noindent \textbf{Materials} The queried dataset for English and Chinese is that presented in \cite{r1}. The training sets for this contribution are presented in table \ref{models}.
 
 \begin{table}[]
     \centering
     \begin{tabular}{l|l|l}
-         \textsc{Language} & \textsc{Language Model} & \textsc{Training set type}\\ \hline
-         English & \href{https://huggingface.co/docs/transformers/model_doc/bert}{\underline{BERT}} & Domain general (web, wiki)\\
-         English & \href{https://huggingface.co/docs/transformers/model_doc/big_bird}{\underline{BigBird}} & Domain general (web, wiki)\\
-         English & \href{https://huggingface.co/austinmw/distilbert-base-uncased-finetuned-health_facts}{\underline{HealthF}} & Domain specific (fact checking)\\
-         English & \href{https://huggingface.co/publichealthsurveillance/PHS-BERT}{\underline{PHS}} & Domain specific (health surveillance on social media)\\
-         Chinese & \href{https://huggingface.co/bert-base-chinese}{\underline{Bert}} & Domain general (web, wiki)\\
-         Chinese & \href{https://huggingface.co/nghuyong/ernie-health-zh}{\underline{HealthZH}} & Domain specific (medical dialogues, records, textbooks)\\ \hline
+          & \textsc{Training set type} & \textsc{Language Models}\\ \hline
+         \textsc{English} & Domain general (web, wiki) & \href{https://huggingface.co/docs/transformers/model_doc/bert}{\underline{BERT}}, \href{https://huggingface.co/docs/transformers/model_doc/big_bird}{\underline{BigBird}}\\
+         & Domain specific & \href{https://huggingface.co/austinmw/distilbert-base-uncased-finetuned-health_facts}{\underline{HealthF}} (fact checking), \href{https://huggingface.co/publichealthsurveillance/PHS-BERT}{\underline{PHS}} (health surveillance on social media)\\ \hline
+         \textsc{Chinese} & Domain general (web, wiki) & \href{https://huggingface.co/bert-base-chinese}{\underline{Bert}}\\
+         & Domain specific & \href{https://huggingface.co/nghuyong/ernie-health-zh}{\underline{HealthZH}} (medical dialogues, records, textbooks)\\ \hline
     \end{tabular}
-    \caption{Language Models used in this paper.}
+    \caption{Language Models used in this paper. References are available as hyperlinks.}
     \label{models}
 \end{table}
 
-\noindent \textbf{Methods} The methodology is the one followed in [2]. The machine is presented with two sentences (i) a \textsc{true} statement extracted from the corpus and (ii) a \textsc{false} statement created with logical operators (see [2] for details). Our measure is the represented by the difference between the suprisal (the logarithm) of the \textsc{true} and the \textsc{false} statement. The higher the results the less performing (more surprisal for true sentences) the architectures.
+\noindent \textbf{Methods} As in \cite{r1}, the machine is presented with two sentences: (i) a \textsc{true} statement from the corpus and (ii) a \textsc{false} counterpart created using logical operators. Our measure is represented by the difference between the surprisal of the \textsc{true} and the \textsc{false} statement. The surprisal is the logarithm of the reciprocal of the output probability in a fill-mask task. In a nutshell, lower surprisal is to be expected for \textsc{true} sentences.
 
 \begin{figure}
     \centering
     \small
-    \includegraphics[scale=0.35]{graphmatplot}
+    \includegraphics[scale=0.37]{graphmatplot}
     \caption{True-False across language models. }
-    \label{fig:my_label}
+    \label{results}
 \end{figure}
 
-\noindent \textbf{Results} Our results are different across languages. We observe asymmetries: while one general-domain architecture perform worse BERT (M = 18.269, SD = 5.82 ) than domain-specific (\textit{F} (3, 64) = 177.30362; p $<$ .00001) but at the same time BigBird results in the best performance (M = -24.459, SD = 7.0771364), possibly due to sparse/global attention. In Chinese, the general domain performs ( \textit{M} = 0.510, \textit{SD} = 2.421) better than the domain-specific one ( \textit{M} = 1.81, \textit{SD} = 2.418) (\textit{t}(34) = 2.6837, p. $<$ .05).
+\noindent \textbf{Results} Figure \ref{results} displays an asymmetry for English (\textit{F}(3, 64) = 177.30362; p $<$ .00001): while one general domain LM performs worse (BERT, \textit{M} = 18.269, \textit{SD = 5.82}) than domain specific ones, BigBird (\textit{M} = -24.459, \textit{SD} = 7.0771364) shows the least surprisal on \textsc{true} statements, plausibly due to its architecture combining sparse and global attention. In Chinese, the general domain performs better (\textit{M} = 0.510, \textit{SD} = 2.421) than the domain-specific one ( \textit{M} = 1.81, \textit{SD} = 2.418) (\textit{t}(34) = 2.6837, p. $<$ .05).
 
-\noindent \textbf{Conclusions and future studies}
-In this paper, we provided a methodology to test bias of in multilingual corpora [3]
+\vspace{-4mm}
+\section{Conclusions}
+\cite{r1} provided a methodology for the detection of bias in LMs that can be adopted to fact checking and the general medical domain, and predicted lower bias with health-specific training sets. Here, we showed that domain specific training sets do not necessarily perform better than domain general ones. Future studies should explore additional datasets (e.g., online medical training, \cite{r4}) and languages.
 
+\vspace{-4mm}
 \begin{thebibliography}{99}
 
 
 \bibitem{r1}
+Samo G, Bonan C, Si F. Health-Related Content in Transformer-Based Deep Neural Network Language Models: Exploring Cross-Linguistic Syntactic Bias. Stud Health Technol Inform. 2022 Jun 29;295:221-225. doi: 10.3233/SHTI220702. PMID: 35773848.
+
+\bibitem{r2}
 Linzen T, Baroni M. Syntactic Structure from Deep Learning. Annual Review of Linguistics 7:1,
 Jan.2021;195-212.
 
-\bibitem{r2}
-Samo G, Bonan C, Si F. Health-Related Content in Transformer-Based Deep Neural Network Language Models: Exploring Cross-Linguistic Syntactic Bias. Stud Health Technol Inform. 2022 Jun 29;295:221-225. doi: 10.3233/SHTI220702. PMID: 35773848.
-
 \bibitem{r3}
-Utunen P, Ndiaye N, Attias M, Mattar L. Multilingual Approach to COVID-19 Online Learning
-Response on OpenWHO.org. In: Mantas J, Hasman A, Househ MS, Gallos P, Zoulias E, Liaskos J,
-editors. Informatics and Technology in Clinical Care and Public Health; IOS Press, 2022;Jan:192-5.
+Ahmed S, Hinkelmann K, Corradini F, Development of fake news model using machine learning through natural language processing; arXiv:2201.07489, Jan. 2022. 
+  
+
+\bibitem{r4}
+Utunen H, Ndiaye N, Piroux C, George R, Attias M, Gamhewage G, Global Reach of an Online COVID-
+19 Course in Multiple Languages on OpenWHO in the First Quarter of 2020: Analysis of Platform Use
+Data, J Med Internet Res. 22 (2020) e19076. doi:10.2196/19076.
 
 \end{thebibliography}
 \end{document}
