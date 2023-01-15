@@ -53,25 +53,25 @@ Language Models\sep Knowledge Reproduction\sep Corpora\sep COVID-19
 
 %aggiungere articolo della Ettinger
 Artificial neural language models (LMs) parse and generate complex linguistic structures across languages \cite{r2}, and can be used for fact checking \cite{r3}. 
-In \cite{r1}, we detected syntactic bias in transformer-based LMs using a list of myth busters on COVID-19 from a World Health Organization corpus. We demonstrated that when LMs are queried with sentences compared with \textit{ad hoc} examples with opposite polarity, asymmetries are easily detected and quantified.
-Here, we explore six training sets for English and Chinese LMs to detect forms of bias with respect to domain-specific (i.e., medical) semantico-encyclopedic knowledge, adopting and improving the dataset previously discussed in \cite{r1}.\footnote{Information on the data is available at the following link:\href{https://github.com/samo-g/healthtransformer}{\underline{https://github.com/samo-g/healthtransformer}}.}
+In \cite{r1}, we detected syntactic bias in Transformer-based LMs using a list of myth busters on COVID-19 from parallel World Health Organization corpora. We demonstrated that when LMs are queried with sentences compared with \textit{ad hoc} examples with opposite polarity, asymmetries are easily detected and quantified.
+Here, we explore six training sets for English and Chinese LMs to detect bias with respect to domain-specific (i.e., medical) semantico-encyclopedic knowledge, adopting and improving the dataset previously discussed in \cite{r1}.\footnote{Information on the data is available at the following link:\href{https://github.com/samo-g/health-transformer}{\underline{https://github.com/samo-g/health-transformer}}.}
 
 \vspace{-4mm}
 \section{The study}
-\textbf{Hypothesis} In \cite{r1}'s conclusions, we claimed that the observed results could be due to the type of training data under investigation, and hypothesised that LMs trained on domain-specific datasets might perform better than those trained with domain-general data.
+\textbf{Hypothesis} In \cite{r1}'s conclusions, we tentatively attributed the observed bias to the type of training data under investigation, and hypothesised that LMs trained on domain specific datasets might perform better than those trained with domain general data.
 
-\noindent \textbf{Materials} The queried dataset for English and Chinese is that presented in \cite{r1}. The training sets for this contribution are presented in table \ref{models}.
+\noindent \textbf{Materials} The queried parallel datasets for English and Chinese are those presented in \cite{r1}. The training sets for this contribution are presented in table \ref{models}.
 
 \begin{table}[]
     \centering
     \begin{tabular}{l|l|l}
           & \textsc{Training set type} & \textsc{Language Models}\\ \hline
-         \textsc{English} & Domain general (web, wiki) & \href{https://huggingface.co/docs/transformers/model_doc/bert}{\underline{BERT}}, \href{https://huggingface.co/docs/transformers/model_doc/big_bird}{\underline{BigBird}}\\
+         \textsc{English} & Domain general (web, wiki) & \href{https://huggingface.co/bert-large-cased}{\underline{BERT}}, \href{https://huggingface.co/google/bigbird-pegasus-large-pubmed}{\underline{BigBird}}\\
          & Domain specific & \href{https://huggingface.co/austinmw/distilbert-base-uncased-finetuned-health_facts}{\underline{HealthF}} (fact checking), \href{https://huggingface.co/publichealthsurveillance/PHS-BERT}{\underline{PHS}} (health surveillance on social media)\\ \hline
          \textsc{Chinese} & Domain general (web, wiki) & \href{https://huggingface.co/bert-base-chinese}{\underline{Bert}}\\
          & Domain specific & \href{https://huggingface.co/nghuyong/ernie-health-zh}{\underline{HealthZH}} (medical dialogues, records, textbooks)\\ \hline
     \end{tabular}
-    \caption{Language Models used in this paper. References are available as hyperlinks.}
+    \caption{Language Models used in this paper. All references are available as hyperlinks.}
     \label{models}
 \end{table}
 
@@ -85,7 +85,7 @@ Here, we explore six training sets for English and Chinese LMs to detect forms o
     \label{results}
 \end{figure}
 
-\noindent \textbf{Results} Figure \ref{results} displays an asymmetry for English (\textit{F}(3, 64) = 177.30362; p $<$ .00001): while one general domain LM performs worse (BERT, \textit{M} = 18.269, \textit{SD = 5.82}) than domain specific ones, BigBird (\textit{M} = -24.459, \textit{SD} = 7.0771364) shows the least surprisal on \textsc{true} statements, plausibly due to its architecture combining sparse and global attention. In Chinese, the general domain performs better (\textit{M} = 0.510, \textit{SD} = 2.421) than the domain-specific one ( \textit{M} = 1.81, \textit{SD} = 2.418) (\textit{t}(34) = 2.6837, p. $<$ .05).
+\noindent \textbf{Results} Figure \ref{results} displays an asymmetry for English (\textit{F}(3, 64) = 177.30362; p $<$ .00001): while the BERT general domain LM performs worse (\textit{M} = 18.269, \textit{SD = 5.82}) than domain specific ones, BigBird (\textit{M} = -24.459, \textit{SD} = 7.0771364) shows the least surprisal on \textsc{true} statements, plausibly due to its architecture combining sparse and global attention. In Chinese, the general domain performs better (\textit{M} = 0.510, \textit{SD} = 2.421) than the domain-specific one (\textit{M} = 1.81, \textit{SD} = 2.418) (\textit{t}(34) = 2.6837, p. $<$ .05).
 
 \vspace{-4mm}
 \section{Conclusions}
